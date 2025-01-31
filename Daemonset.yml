@@ -1,13 +1,11 @@
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet
 metadata:
-  name: nginx-deployment
+  name: nginx-daemonset
   labels:
     app: proxy
-    author: intelliq
 spec:
-  replicas: 3
   selector:
     matchLabels:
       app: proxy
@@ -19,5 +17,8 @@ spec:
     spec:
       containers:
         - name: mynginx
-          image: nginx 
-                    
+          image: nginx
+          ports:
+            - containerPort: 80
+              hostPort: 8080
+

@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ghost-deployment
+  labels:
+    type: cms
+    author: intelliq
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      type: cms
+  template:
+    metadata:
+      name: ghost-pod
+      labels:
+        type: cms
+    spec:
+      containers:
+        - name: ghost
+          image: ghost
+          env:
+            - name: NODE_ENV
+              value: development
+
