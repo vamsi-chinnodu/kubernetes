@@ -2,17 +2,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nodeport-service
+  name: voting-app-service
   labels:
     author: intelliq
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
     - targetPort: 80
       port: 80
       nodePort: 30008
   selector:
-    type: webserver
-    app: proxy
-    author: intelliq
-
+    name: voting-app
